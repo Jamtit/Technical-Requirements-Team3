@@ -1,0 +1,111 @@
+% Kompiuterijos katedros ir kibernetinio saugumo laboratorijos šablonas
+% Template of Department of Computer Science II or cybersecurity laboratory
+% Versija 1.3 2021 m. birželis [ March, 2015]
+
+\documentclass[a4paper,12pt,fleqn]{article}
+\input{allPacks}
+
+\usepackage{graphicx}
+\graphicspath{{./images/}}
+
+\newtoggle{inLithuanian}
+ %If the report is in Lithuanian, it is set to true; otherwise, change to false
+\settoggle{inLithuanian}{false}
+
+%create file preface.tex for the preface text
+%if preface is needed set to true
+\newtoggle{needPreface}
+\settoggle{needPreface}{false}
+
+\newtoggle{signaturesOnTitlePage}
+\settoggle{signaturesOnTitlePage}{false}
+
+\input{macros}
+
+\begin{document}
+ % #1 -report type, #2 - title, #3-7 students, #8 - supervisor
+ \depttitlepage{Information Technology II year}{Technical Specification\\{\small Software Engineering Project | Team 3}}{Titas Majauskas} 
+ {Dinas Majauskas}{Jomantas Užusinas}{Vilius Juknevičius}{Sakalas Stasiulis}% students 2-5
+ {Virgilijus Krinickij, Gediminas Rimša}
+
+\tableofcontents
+
+
+ %Introduction section: label is sec:intro
+\newpage
+\section{Purpose}
+
+\subsection{Purpose of The Document}
+The purpose of this document is to provide an overview of the whole system, while visualizing and explaining the main parts of a system via diagrams, technological decisions, design sketches and verbal explanations. 
+
+\section{Diagrams}
+\begin{center}
+    \includegraphics[scale=0.4]{main/images/system-context-diagram.png}
+\end{center}
+
+\subsection{System-context diagram}
+A \textbf{system context diagram}, shows \textbf{three} external objects that interact
+with the system. These objects have either arrows pointing to them or from them.\\ Arrow meaning:
+\begin{itemize}
+    \item An arrow line that points \textit{from the system to an object} - shows
+what the \textbf{system provides} to that object.
+    \item An arrow line that points \textit{from an object to the
+system} - shows what that \textbf{object provides} to the system.
+\end{itemize}
+Objects meanings and purpose:
+\begin{itemize}
+    \item \textbf{Team 1} - will only act as a provider to the system. It will supply Area 3 with the necessary data about the roof, most likely in JSON format as primary format style.
+    \item \textbf{Bpypolyskel} - will only act as a provider to the system. It will supply the whole solution with functionalities needed to compile a 3D model of the given roof and provide a visualisation of that model.
+    \item \textbf{Graphics.py} - will only act as a provider to the system. It will provide the system with functions to create a simple 2D model of said roof using the basic data.
+    \item \textbf{Team 4} - will act as a receiver of our library. Team 4 will receive the roof data that will be compiled through our algorithms. The format of the data sent to this team will be JSON as primary format.
+\end{itemize}
+
+\includegraphics[scale=0.4]{main/images/use-case.png}
+
+\newpage
+\section{Technological Decisions}
+The library will be built using \textbf{Python} programming language in \textbf{Visual Studio Code IDE}. The library will be accessible to everyone through Python \textit{preferred installer program} (PIP). Its code will use \textbf{Git} version control, and all commits will be archived in a designated repository.\newline
+For testing purposes our team will be using a Python testing framework called \textbf{Pytest}. 
+
+\subsection{Visual Studio Code}
+Visual Studio Code is a streamlined code editor with support for development operations like debugging, task running, and version control.
+
+\subsection{Python}
+Python is used for web and software development, data analytics, machine learning, and even design. Python is a programming language that will be used to implement required solution. We will use Python 3.11.0 - the newest current version available (2022-10-25).
+
+\subsection{Pytest/Pytest-Snapshot}
+
+
+\begin{itemize}
+    \item \textbf{Pytest} - a testing framework, which makes it easy to write small, readable tests, and can scale to support complex functional testing for applications and libraries.
+    \item \textbf{Pytest-Snapshot} - a plugin for snaphshot testing with Pytest.
+    Snapshot testing can be used to test that the value of an expression does not change unexpectedly.
+\end{itemize}
+
+\subsection{Python preferred installer program}
+\textit{Python preferred installer program (PIP)} is used for installing libraries for Python.
+\begin{itemize}
+    \item \textbf{NumPy} - a Python library used for working with arrays. It also has functions for working in domain of linear algebra and matrices.
+    \item \textbf{Matplotlib} - a comprehensive library for creating static, animated, and interactive visualizations in Python.
+    \item \textbf{Mathutils} - a general math utilities library providing Matrix, Vector, Quaternion, Euler and Color classes.
+    \item \textbf{Graphics.py} - a library used to draw simple mathematical figures, using two-dimensional vector points
+\end{itemize}
+
+
+\newpage
+\section{Testing}
+Given the testing framework our team will use, testing will be done on these said sections of our solution:
+\begin{itemize}
+    \item \textbf{Position:}
+    \begin{itemize}
+        \item Do testing to check if the position of the solar panel will not be crossed with position of chimneys, skylights, etc.
+        \item Do testing to check if solar panels are not put over the roof's borders.
+    \end{itemize}
+    \item \textbf{Coverage}
+    \begin{itemize}
+        \item Do testing to check if solar panel covers the maximum possible area of the roof having in mind many limitations.
+    \end{itemize}
+\end{itemize}
+For later, more complex testing \textbf{Pytest} plugin \textbf{Pytest-Snapshot} will be used to check if some changes happened while compiling the needed data.
+
+\end{document}
