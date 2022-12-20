@@ -42,10 +42,10 @@ The purpose of this document is to provide an overview of the whole system, whil
 
 \subsection{System-context diagram}
 \begin{center}
-    \includegraphics[scale=0.4]{main/images/system-context-diagram.png}
+    \includegraphics[scale=0.6]{main/images/system-context-diagram.drawio.png}
 \end{center}
-A \textbf{system context diagram}, shows \textbf{three} external objects that interact
-with the system. These objects have either arrows pointing to them or from them.\\ Arrow meaning:
+A \textbf{system context diagram}, shows \textbf{four} external objects that interact
+with the solution's library. These objects have either arrows pointing to them or from them.\\ Arrow meaning:
 \begin{itemize}
     \item An arrow line that points \textit{from the system to an object} - shows
 what the \textbf{system provides} to that object.
@@ -55,37 +55,31 @@ system} - shows what that \textbf{object provides} to the system.
 Objects meanings and purpose:
 \begin{itemize}
     \item \textbf{Team 1} - will only act as a provider to the system. It will supply Area 3 with the necessary data about the roof, most likely in JSON format as primary format style.
-    \item \textbf{Bpypolyskel} - will only act as a provider to the system. It will supply the whole solution with functionalities needed to compile a 3D model of the given roof and provide a visualisation of that model.
-    \item \textbf{Graphics.py} - will only act as a provider to the system. It will provide the system with functions to create a simple 2D model of said roof using basic data.
+    \item \textbf{Matplotlib} - will only act as a provider to the system. It will supply the whole solution with functionalities needed to compile a 3D model of the given roof and provide a visualisation of that model.
     \item \textbf{Team 4} - will act as a receiver of our library. Team 4 will receive the roof data that will be compiled through our algorithms. The format of the data sent to this team will be JSON as primary format.
 \end{itemize}
 
 \subsection{Activity diagram}
 \begin{center}
-    \includegraphics[scale=0.4]{main/images/Activity.png}
+    \includegraphics[scale=0.6]{main/images/Activity.drawio.png}
 \end{center}
-An \textbf{activity diagram} show the dynamic aspects of this solution. Our library provides \textbf{7} main activities, which work in coordination to provide our area's service. Furthermore, there will be \textbf{two} conditional activities, which will be executed if a condition is met.
+An \textbf{activity diagram} show the dynamic aspects of this solution. Our library provides \textbf{7} main activities, which work in coordination to provide our area's service.
 To receive the end result, we have to complete these steps:
 \begin{itemize}
     \item \textbf{Step 1} - having the library installed through \textit{PIP}, we will import the library to our system using the default python import module. Example: \textit{import solarPanelPlacer as spp}
     \item \textbf{Step 2} - after making our environment ready for data, we import the necessary roof data (roof polygons with their points), that will be extracted by Area 1. Primarily the data will be in JSON format and will be downloaded, imported into the working environment itself.
-    \item \textbf{Step 3} - to finish up with data, last thing we have to import is the solar panel information, such as: gap between them, the measurements of the solar panels themselves.
+    \item \textbf{Step 3} - importing the \textbf{matplotlib} library, that we would have the necessary tools to the data that we are working with.
     \item \textbf{Step 4} - we run the algorithms, that will be imported through our library, to make optimized calculations on solar panel placement and place the panels on the roof. (the panels will be represented as polygons on said roof)
-    \item \textbf{Step 5} - check the necessity for basic drawing of the roof with panels.
-    \item \textbf{Step 6} - if we need a visual representation, we continue as written below:
-    \begin{itemize}
-        \item \textbf{Step 6.1} - import \textbf{graphics.py}, which will import the necessary functionality to draw a simple 2D roof.
-        \item \textbf{Step 6.2} - using the functionality of graphics.py, create a simple drawing of the roof with solar panels placed on it.
-    \end{itemize}
-    \item \textbf{Step 7} - this step is executed after knowing, that no visual representation of the roof with solar panels is needed. The modifications done to the data of the roof, should be converted back to JSON format and be compatible with other group members (Team 4 and Team 5). In addition the compiled data will be formed so, that later a 3D model of the roof could be created.
-    \item \textbf{Step 8} - send the formatted data to Team 4. The data transaction will be simplified as - we will only add, modify the data of already existing JSON file, which will be accessible to the whole group from the launch of this system.
+    \item \textbf{Step 5} - visualize our modified data using one of the \textbf{matplotlib} tools.
+    \item \textbf{Step 6} - use our create function to convert our data into a JSON format.
+    \item \textbf{Step 7} - send the formatted data to Team 4 and Team 5. The data transaction will be simplified as - our JSON file will appear in the working environment of the whole project, which will be accessible to the whole group from the launch of this system.
 \end{itemize}
 
 \subsection{Deployment diagram}
 \begin{center}
     \includegraphics[scale=0.4]{main/images/deployment3.png}
 \end{center}
-\textbf{Deployment} diagram represents how our solution will work internally in the system. The main device is the \textbf{user's personal computer}. It will run our main application called \textbf{Solar Panel Placement Tool} - this application will consist of \textbf{five} libraries and will use only one execution environment - Python. Having in mind, that we are talking about our area, the only executable library at that moment will be \textbf{Area's 3} library. The library will be responsible for receiving the roof's data, making optimized calculations on said data and placing the solar panels onto the roof where it is possible, meaning that the solar panels will not be set onto chimneys, skylights and similar objects that are meaningfully put on the roof. After needed calculations, the data will be formatted back to JSON format and will be sent to another team.
+\textbf{Deployment} diagram represents structural aspects of our area and how our solution will be working internally in the system. The main device is the \textbf{user's personal computer}. It will run our main application called \textbf{Solar Panel Placement Tool} - this application will consist of \textbf{five} libraries and will use only one execution environment - Python. Having in mind, that we are talking about our area, the only executable library at that moment will be \textbf{Area's 3} library. The library will be responsible for receiving the roof's data, making optimized calculations on said data and placing the solar panels onto the roof where it is possible, meaning that the solar panels will not be set onto chimneys, skylights and similar objects that are meaningfully put on the roof. After needed calculations, the data will be formatted back to JSON format and will be sent to another team.
 
 
 
@@ -98,7 +92,7 @@ For testing purposes our team will be using a Python testing framework called \t
 Visual Studio Code is a streamlined code editor with support for development operations like debugging, task running, and version control.
 
 \subsection{Python}
-Python is a programming language used for web and software development, data analytics, machine learning, and even design. Python is a programming language that will be used to implement required solution. We will use Python 3.11.0 - the newest current version available (2022-10-25).
+Python is a programming language used for web and software development, data analytics, machine learning, and even design. Python will be used to implement required solution. We will use Python 3.11.0 - the newest version available (2022-10-25).
 
 \subsection{Pytest/Pytest-Snapshot}
 
@@ -115,8 +109,6 @@ Python is a programming language used for web and software development, data ana
     \item \textbf{NumPy} - a Python library used for working with arrays. It also has functions for working in domain of linear algebra and matrices.
     \item \textbf{Matplotlib} - a comprehensive library for creating static, animated, and interactive visualizations in Python.
     \item \textbf{Mathutils} - a general math utilities library providing Matrix, Vector, Quaternion, Euler and Color classes.
-    \item \textbf{Graphics.py} - a library used to draw simple mathematical figures, using two-dimensional vector points.
-    \item \textbf{Bpypolyskel} - a library used to compile a 3D model of a roof.
 \end{itemize}
 
 
